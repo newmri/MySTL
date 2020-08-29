@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="00.Main">
+      <UniqueIdentifier>{7701b750-5473-4baa-8cd5-c14d9cd4da84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Global">
+      <UniqueIdentifier>{08fb6ac6-34b8-4991-a2c0-43161a0aacba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Global\00.Define">
+      <UniqueIdentifier>{7fdfb4fe-d8a0-46f1-8222-68e279b973eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Global\01.Macro">
+      <UniqueIdentifier>{f5415287-f348-476c-a668-9c83508e08e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Global\03.Global">
+      <UniqueIdentifier>{9c23f67a-a3f3-4fe4-8983-7a61fa7338c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Global\02.Include">
+      <UniqueIdentifier>{ef701fe4-d8c3-4a45-b1e3-6b93de736b01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj">
+      <UniqueIdentifier>{cbb6238e-d768-45fb-8740-ea2d52eb22c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\01.MySTL">
+      <UniqueIdentifier>{778cee06-e1e7-496f-a917-d6f27ee2b2b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\01.MySTL\00.MyVector">
+      <UniqueIdentifier>{8ac2e7fc-db7d-4eea-acef-491d32a4dbf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\01.MySTL\01.Vector">
+      <UniqueIdentifier>{05ba72d3-1119-465b-ab34-e73ec0f4c2c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\02.TestManager">
+      <UniqueIdentifier>{404d2edc-db41-47b0-852c-f7c047b62bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\00.MemoryManager">
+      <UniqueIdentifier>{29d3ae58-437b-42ff-9c63-1d62944cfccb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>00.Main</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryManager.cpp">
+      <Filter>02.Obj\00.MemoryManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TestManager.cpp">
+      <Filter>02.Obj\02.TestManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Define.h">
+      <Filter>01.Global\00.Define</Filter>
+    </ClInclude>
+    <ClInclude Include="MySTL.h">
+      <Filter>02.Obj\01.MySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="Include.h">
+      <Filter>01.Global\02.Include</Filter>
+    </ClInclude>
+    <ClInclude Include="MySTL.hpp">
+      <Filter>02.Obj\01.MySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>01.Global\03.Global</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVector.h">
+      <Filter>02.Obj\01.MySTL\00.MyVector</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVector.hpp">
+      <Filter>02.Obj\01.MySTL\00.MyVector</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>01.Global\01.Macro</Filter>
+    </ClInclude>
+    <ClInclude Include="TestManager.h">
+      <Filter>02.Obj\02.TestManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>02.Obj\01.MySTL\01.Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.hpp">
+      <Filter>02.Obj\01.MySTL\01.Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryManager.h">
+      <Filter>02.Obj\00.MemoryManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>02.Obj</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
