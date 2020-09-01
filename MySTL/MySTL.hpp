@@ -7,5 +7,3 @@
 //{
 //	return m_uLen;
 //}
-
-#include "MySTL.hpp"

@@ -20,9 +20,9 @@ bool CMemoryManager::AllocMemory(void** pData, const size_t uSize)
 		memset(*pData, 0, uSize);
 	}
 
-	catch (bad_alloc& ba)
+	catch (bad_alloc& badalloc)
 	{
-		ERROR_LOG("bad_alloc reason: " << ba.what());
+		ERROR_LOG("bad_alloc reason: " << badalloc.what());
 		return FAIL;
 	}
 

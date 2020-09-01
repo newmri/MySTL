@@ -34,9 +34,21 @@ CMyVector<T>::~CMyVector()
 template<typename T>
 void CMyVector<T>::push_back(const T Data)
 {
-	if (this->m_uLen == m_uCapacity && ReAllocMemory()) return;
+	if (this->m_uLen == m_uCapacity && ReAllocMemory(m_uCapacity * m_uIncreaseCapacity)) return;
 
 	m_pData[this->m_uLen++] = Data;
+}
+
+template<typename T>
+void CMyVector<T>::pop_back(void)
+{
+	--this->m_uLen;
+}
+
+template<typename T>
+void CMyVector<T>::reserve(const size_t uNewCapacity)
+{
+	ReAllocMemory(uNewCapacity);
 }
 
 template<typename T>
@@ -80,9 +92,13 @@ bool CMyVector<T>::AllocMemory(const size_t uCapacity)
 }
 
 template<typename T>
-bool CMyVector<T>::ReAllocMemory(void)
+bool CMyVector<T>::ReAllocMemory(const size_t uNewCapacity)
 {
-	size_t uNewCapacity = m_uCapacity * m_uIncreaseCapacity;
+	if (m_uCapacity >= uNewCapacity)
+	{
+		ERROR_LOG("m_uCapacity " << m_uCapacity << " >= uNewCapacity " << uNewCapacity);
+		return FAIL;
+	}
 
 	if (GET_INSTANCE(CMemoryManager).ReAllocMemory((void**)&m_pData, this->m_uSize * m_uCapacity, this->m_uSize * uNewCapacity))
 		return FAIL;
