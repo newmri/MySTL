@@ -25,17 +25,23 @@
     <Filter Include="02.Obj\01.MySTL">
       <UniqueIdentifier>{778cee06-e1e7-496f-a917-d6f27ee2b2b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Obj\01.MySTL\00.MyVector">
-      <UniqueIdentifier>{8ac2e7fc-db7d-4eea-acef-491d32a4dbf2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.Obj\01.MySTL\01.Vector">
-      <UniqueIdentifier>{05ba72d3-1119-465b-ab34-e73ec0f4c2c0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.Obj\02.TestManager">
       <UniqueIdentifier>{404d2edc-db41-47b0-852c-f7c047b62bc9}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.Obj\00.MemoryManager">
       <UniqueIdentifier>{29d3ae58-437b-42ff-9c63-1d62944cfccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\01.MySTL\00.DataStrucuture">
+      <UniqueIdentifier>{bbd7e933-27ba-4157-8712-5e62fd9381a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\01.MySTL\00.DataStrucuture\00.MyVector">
+      <UniqueIdentifier>{8ac2e7fc-db7d-4eea-acef-491d32a4dbf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\01.MySTL\00.DataStrucuture\01.Vector">
+      <UniqueIdentifier>{05ba72d3-1119-465b-ab34-e73ec0f4c2c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\01.MySTL\01.Algorithm">
+      <UniqueIdentifier>{caf46c6b-30d5-4dc7-9c82-25810d54de5a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,23 +59,17 @@
     <ClInclude Include="Define.h">
       <Filter>01.Global\00.Define</Filter>
     </ClInclude>
-    <ClInclude Include="MySTL.h">
-      <Filter>02.Obj\01.MySTL</Filter>
-    </ClInclude>
     <ClInclude Include="Include.h">
       <Filter>01.Global\02.Include</Filter>
-    </ClInclude>
-    <ClInclude Include="MySTL.hpp">
-      <Filter>02.Obj\01.MySTL</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
       <Filter>01.Global\03.Global</Filter>
     </ClInclude>
     <ClInclude Include="MyVector.h">
-      <Filter>02.Obj\01.MySTL\00.MyVector</Filter>
+      <Filter>02.Obj\01.MySTL\00.DataStrucuture\00.MyVector</Filter>
     </ClInclude>
     <ClInclude Include="MyVector.hpp">
-      <Filter>02.Obj\01.MySTL\00.MyVector</Filter>
+      <Filter>02.Obj\01.MySTL\00.DataStrucuture\00.MyVector</Filter>
     </ClInclude>
     <ClInclude Include="Macro.h">
       <Filter>01.Global\01.Macro</Filter>
@@ -78,16 +78,28 @@
       <Filter>02.Obj\02.TestManager</Filter>
     </ClInclude>
     <ClInclude Include="Vector.h">
-      <Filter>02.Obj\01.MySTL\01.Vector</Filter>
+      <Filter>02.Obj\01.MySTL\00.DataStrucuture\01.Vector</Filter>
     </ClInclude>
     <ClInclude Include="Vector.hpp">
-      <Filter>02.Obj\01.MySTL\01.Vector</Filter>
+      <Filter>02.Obj\01.MySTL\00.DataStrucuture\01.Vector</Filter>
     </ClInclude>
     <ClInclude Include="MemoryManager.h">
       <Filter>02.Obj\00.MemoryManager</Filter>
     </ClInclude>
     <ClInclude Include="Obj.h">
       <Filter>02.Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="MySTL.h">
+      <Filter>02.Obj\01.MySTL\00.DataStrucuture</Filter>
+    </ClInclude>
+    <ClInclude Include="MySTL.hpp">
+      <Filter>02.Obj\01.MySTL\00.DataStrucuture</Filter>
+    </ClInclude>
+    <ClInclude Include="MyAlgorithm.h">
+      <Filter>02.Obj\01.MySTL\01.Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="MyAlgorithm.hpp">
+      <Filter>02.Obj\01.MySTL\01.Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -26,7 +26,7 @@ void CTestManager::Do(const ESTL eSTLType, const size_t uTestNumber)
 	{
 		m_pData[eSTLType]->push_back(100);
 		m_pData[eSTLType]->pop_back();
-		m_pData[eSTLType]->push_back(200);
+		m_pData[eSTLType]->push_back(300);
 	}
 
 	m_sec = chrono::system_clock::now() - m_start;

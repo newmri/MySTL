@@ -14,3 +14,4 @@ using namespace std;
 #include "MyVector.h"
 #include "Vector.h"
 #include "TestManager.h"
+#include "MyAlgorithm.h"

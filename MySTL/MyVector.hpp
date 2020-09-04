@@ -76,6 +76,7 @@ T CMyVector<T>::operator[](const size_t uIndex)
 	}
 }
 
+
 template<typename T>
 bool CMyVector<T>::AllocMemory(const size_t uCapacity)
 {

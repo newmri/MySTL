@@ -4,7 +4,7 @@
 #define IS_ABOVE_ZERO(NUMBER) (0 < NUMBER)
 #define IS_UNDER_ONE(NUMBER) (1 > NUMBER)
 
-#define IS_SAME(VALUE1, VALUE2) (VALUE1 == VALUE2) 
+#define IS_SAME(LEFT_NUMBER, RIGHT_NUMBER) (LEFT_NUMBER == RIGHT_NUMBER)
 #define IS_VALID_RANGE(NUMBER, MAX_NUMBER) (0 <= NUMBER && MAX_NUMBER > NUMBER) 
 
 #define ERROR_LOG(szStr) cout << "File: " __FILE__ << " Function: " __FUNCTION__ << " Line: " << __LINE__ <<" Error: " << szStr << endl;

@@ -143,6 +143,8 @@
     <ClInclude Include="Include.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="MemoryManager.h" />
+    <ClInclude Include="MyAlgorithm.h" />
+    <ClInclude Include="MyAlgorithm.hpp" />
     <ClInclude Include="MySTL.h" />
     <ClInclude Include="MySTL.hpp" />
     <ClInclude Include="MyVector.h" />
