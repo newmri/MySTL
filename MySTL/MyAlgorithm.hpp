@@ -92,3 +92,38 @@ void SelectionSort(T* pStart, T* pEnd)
 {
 	SelectionSort(pStart, pEnd, AscendingOrder);
 }
+
+template<typename T, typename FUNC>
+void InsertionSort(T* pStart, T* pEnd, FUNC Compare)
+{
+	size_t uLen = GetLen(pStart, pEnd);
+
+	if (FALSE == uLen) return;
+
+	size_t uTargetIndex;
+
+	T Target;
+
+	for (size_t i = 1; i < uLen; ++i)
+	{
+		Target = pStart[i];
+
+		for (uTargetIndex = i; uTargetIndex > 0; --uTargetIndex)
+		{
+			if (Compare(pStart[uTargetIndex - 1], Target))
+			{
+				pStart[uTargetIndex] = pStart[uTargetIndex - 1];
+			}
+
+			else break;
+		}
+
+		pStart[uTargetIndex] = Target;
+	}
+}
+
+template<typename T>
+void InsertionSort(T* pStart, T* pEnd)
+{
+	InsertionSort(pStart, pEnd, AscendingOrder);
+}

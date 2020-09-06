@@ -24,4 +24,10 @@ void SelectionSort(T* pStart, T* pEnd, FUNC Compare);
 template<typename T>
 void SelectionSort(T* pStart, T* pEnd);
 
+template<typename T, typename FUNC = bool(*)(const T&, const T&)>
+void InsertionSort(T* pStart, T* pEnd, FUNC Compare);
+
+template<typename T>
+void InsertionSort(T* pStart, T* pEnd);
+
 #include "MyAlgorithm.hpp"
