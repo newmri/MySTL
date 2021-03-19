@@ -4,7 +4,7 @@
 #include <memory>
 #include <mutex>
 #include <chrono>
-#include <vector>
+#include <VECTOR>
 
 using namespace std;
 
@@ -12,6 +12,6 @@ using namespace std;
 #include "MemoryManager.h"
 #include "MySTL.h"
 #include "MyVector.h"
-#include "Vector.h"
+#include "VECTOR.h"
 #include "TestManager.h"
 #include "MyAlgorithm.h"

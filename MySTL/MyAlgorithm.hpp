@@ -3,127 +3,123 @@
 #include "MyAlgorithm.h"
 
 template<typename T>
-void Swap(T& rLeft, T& rRight)
+void Swap(T& left, T& right)
 {
-	T LeftBackup = rLeft;
-	rLeft = rRight;
-	rRight = LeftBackup;
+	T leftBackup = left;
+	left = right;
+	right = leftBackup;
 }
 
 template<typename T>
-bool AscendingOrder(const T& rLeft, const T& rRight)
+bool AscendingOrder(const T& left, const T& right)
 {
-	return (rLeft > rRight);
+	return (left > right);
 }
 
 template<typename T>
-bool DescendingOrder(const T& rLeft, const T& rRight)
+bool DescendingOrder(const T& left, const T& right)
 {
-	return (rLeft < rRight);
+	return (left < right);
 }
 
 template<typename T>
-size_t GetLen(T* pStart, T* pEnd)
+size_t GetLen(T* start, T* end)
 {
-	if (pStart >= pEnd)
+	if (start >= end)
 	{
-		ERROR_LOG("pStart " << pStart << " is Greater than pEnd or Same " << pEnd);
+		ERROR_LOG("start " << start << " is Greater than end or Same " << end);
 		return FALSE;
 	}
 
-	return (pEnd - pStart);
+	return (end - start);
 }
 
 template<typename T, typename FUNC>
-void BubbleSort(T* pStart, T* pEnd, FUNC Compare)
+void BubbleSort(T* start, T* end, FUNC Compare)
 {
-	size_t uLen = GetLen(pStart, pEnd);
+	size_t len = GetLen(start, end);
 
-	if (FALSE == uLen) return;
+	if (FALSE == len) return;
 
-	for (size_t i = 0; i < uLen; ++i)
+	for (size_t i = 0; i < len; ++i)
 	{
-		for (size_t j = 0; j < uLen - i - 1; ++j)
+		for (size_t j = 0; j < len - i - 1; ++j)
 		{
-			if (Compare(pStart[j], pStart[j + 1]))
-			{
-				Swap(pStart[j], pStart[j + 1]);
-			}
+			if (Compare(start[j], start[j + 1]))
+				Swap(start[j], start[j + 1]);
 		}
 	}
 }
 
 template<typename T>
-void BubbleSort(T* pStart, T* pEnd)
+void BubbleSort(T* start, T* end)
 {
-	BubbleSort(pStart, pEnd, AscendingOrder);
+	BubbleSort(start, end, AscendingOrder);
 }
 
 template<typename T, typename FUNC>
-void SelectionSort(T* pStart, T* pEnd, FUNC Compare)
+void SelectionSort(T* start, T* end, FUNC Compare)
 {
-	size_t uLen = GetLen(pStart, pEnd);
+	size_t len = GetLen(start, end);
 
-	if (FALSE == uLen) return;
+	if (FALSE == len) return;
 
-	size_t uTargetIndex = 0;
+	size_t targetIndex = 0;
 
-	for (size_t i = 0; i < uLen - 1; ++i)
+	for (size_t i = 0; i < len - 1; ++i)
 	{
-		uTargetIndex = i;
+		targetIndex = i;
 
-		for (size_t j = i + 1; j < uLen; ++j)
+		for (size_t j = i + 1; j < len; ++j)
 		{
-			if (Compare(pStart[uTargetIndex], pStart[j]))
-			{
-				uTargetIndex = j;
-			}
+			if (Compare(start[targetIndex], start[j]))
+				targetIndex = j;
 		}
 
-		if (i != uTargetIndex)
+		if (i != targetIndex)
 		{
-			Swap(pStart[i], pStart[uTargetIndex]);
+			Swap(start[i], start[targetIndex]);
 		}
 	}
 }
 
 template<typename T>
-void SelectionSort(T* pStart, T* pEnd)
+void SelectionSort(T* start, T* end)
 {
-	SelectionSort(pStart, pEnd, AscendingOrder);
+	SelectionSort(start, end, AscendingOrder);
 }
 
 template<typename T, typename FUNC>
-void InsertionSort(T* pStart, T* pEnd, FUNC Compare)
+void InsertionSort(T* start, T* end, FUNC Compare)
 {
-	size_t uLen = GetLen(pStart, pEnd);
+	size_t len = GetLen(start, end);
 
-	if (FALSE == uLen) return;
+	if (FALSE == len)
+		return;
 
-	size_t uTargetIndex;
+	size_t targetIndex;
 
-	T Target;
+	T target;
 
-	for (size_t i = 1; i < uLen; ++i)
+	for (size_t i = 1; i < len; ++i)
 	{
-		Target = pStart[i];
+		target = start[i];
 
-		for (uTargetIndex = i; uTargetIndex > 0; --uTargetIndex)
+		for (targetIndex = i; targetIndex > 0; --targetIndex)
 		{
-			if (Compare(pStart[uTargetIndex - 1], Target))
-			{
-				pStart[uTargetIndex] = pStart[uTargetIndex - 1];
-			}
+			if (Compare(start[targetIndex - 1], target))
+				start[targetIndex] = start[targetIndex - 1];
 
-			else break;
+			else
+				break;
 		}
 
-		pStart[uTargetIndex] = Target;
+		start[targetIndex] = target;
 	}
 }
 
 template<typename T>
-void InsertionSort(T* pStart, T* pEnd)
+void InsertionSort(T* start, T* end)
 {
-	InsertionSort(pStart, pEnd, AscendingOrder);
+	InsertionSort(start, end, AscendingOrder);
 }

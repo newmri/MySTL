@@ -92,9 +92,6 @@
     <ClInclude Include="MySTL.h">
       <Filter>02.Obj\01.MySTL\00.DataStrucuture</Filter>
     </ClInclude>
-    <ClInclude Include="MySTL.hpp">
-      <Filter>02.Obj\01.MySTL\00.DataStrucuture</Filter>
-    </ClInclude>
     <ClInclude Include="MyAlgorithm.h">
       <Filter>02.Obj\01.MySTL\01.Algorithm</Filter>
     </ClInclude>

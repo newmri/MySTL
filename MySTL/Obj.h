@@ -1,6 +1,6 @@
 #pragma once
 
-class CObj
+class Obj
 {
 	virtual bool Init(void) = 0;
 };

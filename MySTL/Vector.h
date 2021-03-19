@@ -3,7 +3,7 @@
 #include "MySTL.h"
 
 template<typename T>
-class CVector : public CMySTL<T>
+class Vector : public MySTL<T>
 {
 public:
 	virtual bool Init(void) override;
@@ -16,7 +16,7 @@ public:
 	virtual size_t size(void) override;
 
 private:
-	vector<T> m_vData;
+	vector<T> data;
 };
 
 #include "Vector.hpp"

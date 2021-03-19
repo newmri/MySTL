@@ -8,33 +8,33 @@ static const size_t VECTOR_DEFAULT_CAPACITY = 2;
 static const size_t VECTOR_INCREASE_CAPACITY = 10;
 
 template<typename T>
-class CMyVector : public CMySTL<T>
+class MyVector : public MySTL<T>
 {
 public:
 	virtual bool Init(void) override;
 
 public:
-	CMyVector(const size_t uCapacity = VECTOR_DEFAULT_CAPACITY, const size_t uIncreaseCapacity = VECTOR_INCREASE_CAPACITY);
-	~CMyVector();
+	MyVector(const size_t capacity = VECTOR_DEFAULT_CAPACITY, const size_t increaseCapacity = VECTOR_INCREASE_CAPACITY);
+	~MyVector();
 
 public:
-	virtual void push_back(const T Data) override;
+	virtual void push_back(const T data) override;
 	virtual void pop_back(void) override;
-	virtual void reserve(const size_t uNewCapacity) override;
+	virtual void reserve(const size_t newCapacity) override;
 	virtual void clear(void) override;
 	virtual size_t size(void) override;
 
 public:
-	T operator[](const size_t uIndex);
+	T operator[](const size_t index);
 
 private:
-	bool AllocMemory(const size_t uCapacity);
-	bool ReAllocMemory(const size_t uNewCapacity);
+	bool AllocMemory(const size_t capacity);
+	bool ReAllocMemory(const size_t newCapacity);
 
 private:
-	size_t m_uCapacity = 0;
-	size_t m_uIncreaseCapacity = 0;
-	T* m_pData = nullptr;
+	size_t capacity = 0;
+	size_t increaseCapacity = 0;
+	T* data = nullptr;
 };
 
 #include "MyVector.hpp"

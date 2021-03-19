@@ -1,33 +1,33 @@
 #pragma once
 
 template<typename T>
-void Swap(T& rLeft, T& rRight);
+void Swap(T& left, T& right);
 
 template<typename T>
-bool AscendingOrder(const T& rLeft, const T& rRight);
+bool AscendingOrder(const T& left, const T& right);
 
 template<typename T>
-bool DescendingOrder(const T& rLeft, const T& rRight);
+bool DescendingOrder(const T& left, const T& right);
 
 template<typename T>
-size_t GetLen(T* pStart, T* pEnd);
+size_t GetLen(T* start, T* end);
 
 template<typename T, typename FUNC = bool(*)(const T&, const T&)>
-void BubbleSort(T* pStart, T* pEnd, FUNC Compare);
+void BubbleSort(T* start, T* end, FUNC Compare);
 
 template<typename T>
-void BubbleSort(T* pStart, T* pEnd);
+void BubbleSort(T* start, T* end);
 
 template<typename T, typename FUNC = bool(*)(const T&, const T&)>
-void SelectionSort(T* pStart, T* pEnd, FUNC Compare);
+void SelectionSort(T* start, T* end, FUNC Compare);
 
 template<typename T>
-void SelectionSort(T* pStart, T* pEnd);
+void SelectionSort(T* start, T* end);
 
 template<typename T, typename FUNC = bool(*)(const T&, const T&)>
-void InsertionSort(T* pStart, T* pEnd, FUNC Compare);
+void InsertionSort(T* start, T* end, FUNC Compare);
 
 template<typename T>
-void InsertionSort(T* pStart, T* pEnd);
+void InsertionSort(T* start, T* end);
 
 #include "MyAlgorithm.hpp"

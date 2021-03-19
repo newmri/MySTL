@@ -1,35 +1,35 @@
 #include "Global.h"
 
-IMPLEMENT_SINGLETON(CTestManager)
+IMPLEMENT_SINGLETON(TestManager)
 
-bool CTestManager::Init(void)
+bool TestManager::Init(void)
 {
-	m_pData[ESTL::eMyVector].reset(new CMyVector<STL_TEST_TYPE>());
-	m_pData[ESTL::eVector].reset(new CVector<STL_TEST_TYPE>());
+	this->data[ESTL::MY_VECTOR].reset(new MyVector<STL_TEST_TYPE>());
+	this->data[ESTL::VECTOR].reset(new Vector<STL_TEST_TYPE>());
 
 	return SUCC;
 }
 
-void CTestManager::Do(const ESTL eSTLType, const size_t uTestNumber)
+void TestManager::Do(const ESTL stlType, const size_t testNumber)
 {
-	if (ESTL::eSTLTypeEND == eSTLType)
+	if (ESTL::STL_TYPE_END == stlType)
 	{
-		ERROR_LOG("eSTLType is invalid " << eSTLType);
+		ERROR_LOG("stlType is invalid " << stlType);
 		return;
 	}
 
-	m_start = chrono::system_clock::now();
+	this->start = chrono::system_clock::now();
 
-	m_pData[eSTLType]->reserve(uTestNumber / 5);
+	this->data[stlType]->reserve(testNumber / TEST_RESERVE_DEVIDE_NUMBER);
 
-	for (size_t i = 0; i < uTestNumber; ++i)
+	for (size_t i = 0; i < testNumber; ++i)
 	{
-		m_pData[eSTLType]->push_back(100);
-		m_pData[eSTLType]->pop_back();
-		m_pData[eSTLType]->push_back(300);
+		this->data[stlType]->push_back(100);
+		this->data[stlType]->pop_back();
+		this->data[stlType]->push_back(300);
 	}
 
-	m_sec = chrono::system_clock::now() - m_start;
+	this->sec = chrono::system_clock::now() - this->start;
 
-	NORMAL_LOG("eSTLType: " << eSTLType << " size: " << m_pData[eSTLType]->size() << " has been passed time(sec) : " << m_sec.count() << " seconds");
+	NORMAL_LOG("ESTL: " << stlType << " size: " << this->data[stlType]->size() << " has been passed time(sec) : " << this->sec.count() << " seconds");
 }

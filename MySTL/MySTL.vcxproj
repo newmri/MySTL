@@ -146,7 +146,6 @@
     <ClInclude Include="MyAlgorithm.h" />
     <ClInclude Include="MyAlgorithm.hpp" />
     <ClInclude Include="MySTL.h" />
-    <ClInclude Include="MySTL.hpp" />
     <ClInclude Include="MyVector.h" />
     <ClInclude Include="MyVector.hpp" />
     <ClInclude Include="Obj.h" />

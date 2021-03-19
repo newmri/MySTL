@@ -2,9 +2,9 @@
 
 int main(void)
 {
-	for (size_t i = 0; i < ESTL::eSTLTypeEND; ++i)
+	for (size_t i = 0; i < ESTL::STL_TYPE_END; ++i)
 	{
-		GET_INSTANCE(CTestManager).Do(static_cast<ESTL>(i));
+		GET_INSTANCE(TestManager).Do(static_cast<ESTL>(i));
 	}
 
 	return SUCC;

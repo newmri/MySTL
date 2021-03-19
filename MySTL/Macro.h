@@ -7,8 +7,8 @@
 #define IS_SAME(LEFT_NUMBER, RIGHT_NUMBER) (LEFT_NUMBER == RIGHT_NUMBER)
 #define IS_VALID_RANGE(NUMBER, MAX_NUMBER) (0 <= NUMBER && MAX_NUMBER > NUMBER) 
 
-#define ERROR_LOG(szStr) cout << "File: " __FILE__ << " Function: " __FUNCTION__ << " Line: " << __LINE__ <<" Error: " << szStr << endl;
-#define NORMAL_LOG(szStr) cout << szStr << endl;
+#define ERROR_LOG(str) cout << "File: " __FILE__ << " Function: " __FUNCTION__ << " Line: " << __LINE__ <<" Error: " << str << endl;
+#define NORMAL_LOG(str) cout << str << endl;
 
 
 #define IS_NULL(ptr) (nullptr == ptr)
@@ -28,25 +28,25 @@
 	DEFAULT_CONSTRUCTOR(CLASS)						\
 	NO_COPY(CLASS)									\
 													\
-	static unique_ptr<CLASS> m_pInstance;			\
-	static once_flag m_stOnceFlag;					\
+	static unique_ptr<CLASS> instance;				\
+	static once_flag onceFlag;						\
 													\
 	public:											\
 	static CLASS&	GetInstance(void);					
 
 #define IMPLEMENT_SINGLETON(CLASS)					\
-	unique_ptr<CLASS> CLASS::m_pInstance;			\
-	once_flag CLASS::m_stOnceFlag;					\
+	unique_ptr<CLASS> CLASS::instance;				\
+	once_flag CLASS::onceFlag;						\
 													\
 	CLASS& CLASS::GetInstance(void)					\
 	{												\
-		call_once(CLASS::m_stOnceFlag, []()			\
+		call_once(CLASS::onceFlag, []()				\
 		{											\
-			m_pInstance.reset(new CLASS);			\
-			(*(m_pInstance.get())).Init();			\
+			instance.reset(new CLASS);				\
+			(*(instance.get())).Init();				\
 		});											\
 													\
-		return *(m_pInstance.get());				\
+		return *(instance.get());					\
 	}
 
 #define GET_INSTANCE(CLASS) CLASS::GetInstance()

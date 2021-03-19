@@ -1,23 +1,21 @@
 #include "Global.h"
 
-IMPLEMENT_SINGLETON(CMemoryManager)
+IMPLEMENT_SINGLETON(MemoryManager)
 
-bool CMemoryManager::Init(void)
+bool MemoryManager::Init(void)
 {
 	return SUCC; 
 }
 
-bool CMemoryManager::AllocMemory(void** pData, const size_t uSize)
+bool MemoryManager::AllocMemory(void** data, const size_t size)
 {
-	if (FALSE == CanAllocMemory(pData, uSize)) return FAIL;
-
-	// try문 말고 CanAllocMemory에서 메모리 사용량을 체크해서
-	// 동적할당 가능 여부를 추가 할까?
+	if (FALSE == CanAllocMemory(data, size))
+		return FAIL;
 
 	try
 	{
-		*pData = new char[uSize];
-		memset(*pData, 0, uSize);
+		*data = new char[size];
+		memset(*data, 0, size);
 	}
 
 	catch (bad_alloc& badalloc)
@@ -29,67 +27,69 @@ bool CMemoryManager::AllocMemory(void** pData, const size_t uSize)
 	return SUCC;
 }
 
-bool CMemoryManager::ReAllocMemory(void** pData, const size_t uCurrSize, const size_t uNewSize)
+bool MemoryManager::ReAllocMemory(void** data, const size_t currSize, const size_t newSize)
 {
-	if (FALSE == CanReAllocMemory(pData, uCurrSize, uNewSize)) return FAIL;
+	if (FALSE == CanReAllocMemory(data, currSize, newSize))
+		return FAIL;
 
-	void* pNewData = nullptr;
+	void* newData = nullptr;
 
 	// 새로운 데이터를 담을 메모리 할당
-	if (AllocMemory((void**)&pNewData, uNewSize)) return FAIL;
+	if (AllocMemory((void**)&newData, newSize))
+		return FAIL;
 
 	// 데이터 복사
-	memcpy_s(pNewData, uNewSize, *pData, uCurrSize);
+	memcpy_s(newData, newSize, *data, currSize);
 
 	// 현재 메모리 삭제
-	SAFE_DELETE_ARRAY(*pData);
+	SAFE_DELETE_ARRAY(*data);
 
 	// 새로운 포인터를 가리키자.
-	*pData = pNewData;
+	*data = newData;
 
 	return SUCC;
 }
 
-bool CMemoryManager::CanAllocMemory(void** pData, const size_t uSize)
+bool MemoryManager::CanAllocMemory(void** data, const size_t size)
 {
-	if (IS_NOT_NULL(*pData))
+	if (IS_NOT_NULL(*data))
 	{
-		ERROR_LOG("pData is not nullptr");
+		ERROR_LOG("data is not nullptr");
 		return FALSE;
 	}
 
-	if (IS_ZERO(uSize))
+	if (IS_ZERO(size))
 	{
-		ERROR_LOG("uSize is " << uSize);
+		ERROR_LOG("size is " << size);
 		return FALSE;
 	}
 
 	return TRUE;
 }
 
-bool CMemoryManager::CanReAllocMemory(void** pData, const size_t uCurrSize, const size_t uNewsize)
+bool MemoryManager::CanReAllocMemory(void** data, const size_t currSize, const size_t newSize)
 {
-	if (IS_NULL(*pData))
+	if (IS_NULL(*data))
 	{
-		ERROR_LOG("pData is nullptr");
+		ERROR_LOG("data is nullptr");
 		return FALSE;
 	}
 
-	if (IS_ZERO(uCurrSize))
+	if (IS_ZERO(currSize))
 	{
-		ERROR_LOG("uCurrSize is " << uCurrSize);
+		ERROR_LOG("currSize is " << currSize);
 		return FALSE;
 	}
 
-	if (IS_ZERO(uNewsize))
+	if (IS_ZERO(newSize))
 	{
-		ERROR_LOG("uNewsize is " << uNewsize);
+		ERROR_LOG("newSize is " << newSize);
 		return FALSE;
 	}
 
-	if (IS_SAME(uCurrSize, uNewsize))
+	if (IS_SAME(currSize, newSize))
 	{
-		ERROR_LOG("uCurrSize and uNewsize is same " << uNewsize);
+		ERROR_LOG("currSize and newSize is same " << newSize);
 		return FALSE;
 	}
 

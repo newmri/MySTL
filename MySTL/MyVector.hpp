@@ -3,108 +3,111 @@
 #include "MyVector.h"
 
 template<typename T>
-bool CMyVector<T>::Init(void)
+bool MyVector<T>::Init(void)
 {
 	return SUCC;
 }
 
 template<typename T>
-CMyVector<T>::CMyVector(const size_t uCapacity, const size_t uIncreaseCapacity)
+MyVector<T>::MyVector(const size_t capacity, const size_t increaseCapacity)
 {
-	this->m_uSize = sizeof(T);
+	this->dataSize = sizeof(T);
 
-	if (IS_UNDER_ONE(uIncreaseCapacity))
+	if (IS_UNDER_ONE(increaseCapacity))
 	{
-		ERROR_LOG("uIncreaseCapacity is " << uIncreaseCapacity);
-		m_uIncreaseCapacity = VECTOR_INCREASE_CAPACITY;
-		ERROR_LOG("m_uIncreaseCapacity is Changed To " << m_uIncreaseCapacity);
+		ERROR_LOG("increaseCapacity is " << increaseCapacity);
+		this->increaseCapacity = VECTOR_INCREASE_CAPACITY;
+		ERROR_LOG("this->increaseCapacity is Changed To " << this->increaseCapacity);
 	}
 
-	else m_uIncreaseCapacity = uIncreaseCapacity;
+	else this->increaseCapacity = increaseCapacity;
 	
-	AllocMemory(uCapacity);
+	AllocMemory(capacity);
 }
 
 template<typename T>
-CMyVector<T>::~CMyVector()
+MyVector<T>::~MyVector()
 {
 	clear();
 }
 
 template<typename T>
-void CMyVector<T>::push_back(const T Data)
+void MyVector<T>::push_back(const T data)
 {
-	if (this->m_uLen == m_uCapacity && ReAllocMemory(m_uCapacity * m_uIncreaseCapacity)) return;
+	if (this->len == this->capacity && ReAllocMemory(this->capacity * this->increaseCapacity))
+		return;
 
-	m_pData[this->m_uLen++] = Data;
+	this->data[this->len++] = data;
 }
 
 template<typename T>
-void CMyVector<T>::pop_back(void)
+void MyVector<T>::pop_back(void)
 {
-	--this->m_uLen;
+	--this->len;
 }
 
 template<typename T>
-void CMyVector<T>::reserve(const size_t uNewCapacity)
+void MyVector<T>::reserve(const size_t newCapacity)
 {
-	ReAllocMemory(uNewCapacity);
+	ReAllocMemory(newCapacity);
 }
 
 template<typename T>
-void CMyVector<T>::clear(void)
+void MyVector<T>::clear(void)
 {
-	SAFE_DELETE_ARRAY(m_pData);
-	this->m_uLen = 0;
+	SAFE_DELETE_ARRAY(this->data);
+	this->len = 0;
 }
 
 template<typename T>
-size_t CMyVector<T>::size(void)
+size_t MyVector<T>::size(void)
 {
-	return this->m_uLen;
+	return this->len;
 }
 
 template<typename T>
-T CMyVector<T>::operator[](const size_t uIndex)
+T MyVector<T>::operator[](const size_t index)
 {
-	if (IS_VALID_RANGE(uIndex, this->m_uLen)) return m_pData[uIndex];
+	if (IS_VALID_RANGE(index, this->len))
+		return this->data[index];
 
 	else
 	{
-		ERROR_LOG("uIndex is invalid uIndex: " << uIndex << " m_uLen: " << this->m_uLen);
+		ERROR_LOG("index is invalid index: " << index << " len: " << this->len);
 		return T();
 	}
 }
 
 
 template<typename T>
-bool CMyVector<T>::AllocMemory(const size_t uCapacity)
+bool MyVector<T>::AllocMemory(const size_t capacity)
 {
-	if (IS_ZERO(uCapacity))
+	if (IS_ZERO(capacity))
 	{
-		ERROR_LOG("uCapacity is " << uCapacity);
-		m_uCapacity = VECTOR_DEFAULT_CAPACITY;
-		ERROR_LOG("m_uCapacity is Changed To " << m_uCapacity);
+		ERROR_LOG("capacity is " << this->capacity);
+		this->capacity = VECTOR_DEFAULT_CAPACITY;
+		ERROR_LOG("capacity is Changed To " << capacity);
 	}
 
-	else m_uCapacity = uCapacity;
+	else
+		this->capacity = capacity;
 
-	return GET_INSTANCE(CMemoryManager).AllocMemory((void**)&m_pData, this->m_uSize * m_uCapacity);
+	return GET_INSTANCE(MemoryManager).AllocMemory((void**)&this->data, this->dataSize * this->capacity);
 }
 
 template<typename T>
-bool CMyVector<T>::ReAllocMemory(const size_t uNewCapacity)
+bool MyVector<T>::ReAllocMemory(const size_t newCapacity)
 {
-	if (m_uCapacity >= uNewCapacity)
+	if (this->capacity >= newCapacity)
 	{
-		ERROR_LOG("m_uCapacity " << m_uCapacity << " >= uNewCapacity " << uNewCapacity);
+		ERROR_LOG("capacity " << this->capacity << " >= newCapacity " << newCapacity);
 		return FAIL;
 	}
 
-	if (GET_INSTANCE(CMemoryManager).ReAllocMemory((void**)&m_pData, this->m_uSize * m_uCapacity, this->m_uSize * uNewCapacity))
+	if (GET_INSTANCE(MemoryManager).ReAllocMemory((void**)&this->data, this->dataSize * this->capacity, this->dataSize * newCapacity))
 		return FAIL;
 
-	m_uCapacity = uNewCapacity;
+	this->capacity = newCapacity;
 
 	return SUCC;
 }

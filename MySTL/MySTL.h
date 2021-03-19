@@ -1,7 +1,7 @@
 #pragma once
 
 template<typename T>
-class CMySTL : public CObj
+class MySTL : public Obj
 {
 public:
 	virtual bool Init(void) = 0;
@@ -20,7 +20,7 @@ public:
 
 protected:
 	// 데이터 한개의 사이즈
-	size_t m_uSize = 0;
+	size_t dataSize = 0;
 	// 데이터 길이
-	size_t m_uLen = 0;
+	size_t len = 0;
 };
