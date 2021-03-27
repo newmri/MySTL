@@ -42,12 +42,45 @@ bool MemoryManager::ReAllocMemory(void** data, const size_t currSize, const size
 	memcpy_s(newData, newSize, *data, currSize);
 
 	// 현재 메모리 삭제
-	SAFE_DELETE_ARRAY(*data);
+	DeAllocMemory(data, currSize);
 
 	// 새로운 포인터를 가리키자.
 	*data = newData;
 
 	return SUCC;
+}
+
+void MemoryManager::DeAllocMemory(void** data, const size_t size)
+{
+	if (!CanDeAllocMemory(data, size))
+		return;
+
+	if (1 == size)
+	{
+		SAFE_DELETE(*data);
+	}
+
+	else
+	{
+		SAFE_DELETE_ARRAY(*data);
+	}
+}
+
+bool MemoryManager::CanDeAllocMemory(void** data, const size_t size)
+{
+	if (IS_NULL(*data))
+	{
+		ERROR_LOG("data is nullptr");
+		return FALSE;
+	}
+
+	if (IS_ZERO(size))
+	{
+		ERROR_LOG("size is " << size);
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 bool MemoryManager::CanAllocMemory(void** data, const size_t size)
@@ -84,12 +117,6 @@ bool MemoryManager::CanReAllocMemory(void** data, const size_t currSize, const s
 	if (IS_ZERO(newSize))
 	{
 		ERROR_LOG("newSize is " << newSize);
-		return FALSE;
-	}
-
-	if (IS_SAME(currSize, newSize))
-	{
-		ERROR_LOG("currSize and newSize is same " << newSize);
 		return FALSE;
 	}
 

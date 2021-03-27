@@ -2,10 +2,11 @@
 
 int main(void)
 {
-	for (size_t i = 0; i < ESTL::STL_TYPE_END; ++i)
-	{
-		GET_INSTANCE(TestManager).Do(static_cast<ESTL>(i));
-	}
+#if _DEBUG
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif // _DEBUG
+
+	GET_INSTANCE(TestManager).Work();
 
 	return SUCC;
 }

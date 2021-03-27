@@ -12,8 +12,13 @@ public:
 	bool AllocMemory(void** data, const size_t size);
 	// 메모리 재 할당 및 데이터 복사, data는 nullptr이 아니여야 한다.
 	bool ReAllocMemory(void** data, const size_t currSize, const size_t newSize);
+	// 메모리 해제
+	void DeAllocMemory(void** data, const size_t size);
 
 private:
+	// 메모리 해제 가능 한지 체크
+	bool CanDeAllocMemory(void** data, const size_t size);
+
 	// 메모리 할당 가능 한지 체크
 	bool CanAllocMemory(void** data, const size_t size);
 	// 메모리 재 할당 가능 및 데이터 복사 가능 한지 체크

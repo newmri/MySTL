@@ -5,6 +5,7 @@ class MySTL : public Obj
 {
 public:
 	virtual bool Init(void) = 0;
+	virtual ~MySTL() = default;
 
 public:
 	// 데이터를 뒤에 삽입
@@ -17,6 +18,9 @@ public:
 	virtual void clear(void) = 0;
 	// 데이터 길이(원소) 갯수를 얻어온다.
 	virtual size_t size(void) = 0;
+
+public:
+	virtual T operator[](const size_t index) = 0;
 
 protected:
 	// 데이터 한개의 사이즈

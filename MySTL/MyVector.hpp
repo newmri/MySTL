@@ -26,16 +26,27 @@ MyVector<T>::MyVector(const size_t capacity, const size_t increaseCapacity)
 }
 
 template<typename T>
-MyVector<T>::~MyVector()
+inline MyVector<T>::~MyVector()
 {
-	clear();
+	lock_guard<mutex> guard(this->lock);
+
+	GET_INSTANCE(MemoryManager).DeAllocMemory((void**)&this->data, this->capacity);
+
+	this->data = nullptr;
+	this->len = 0;
+	this->capacity = 0;
 }
 
 template<typename T>
 void MyVector<T>::push_back(const T data)
 {
-	if (this->len == this->capacity && ReAllocMemory(this->capacity * this->increaseCapacity))
-		return;
+	lock_guard<mutex> guard(this->lock);
+
+	if (this->len == this->capacity)
+	{
+		if(ReAllocMemory(this->capacity * this->increaseCapacity))
+			return;
+	}
 
 	this->data[this->len++] = data;
 }
@@ -43,31 +54,41 @@ void MyVector<T>::push_back(const T data)
 template<typename T>
 void MyVector<T>::pop_back(void)
 {
-	--this->len;
+	lock_guard<mutex> guard(this->lock);
+
+	if (this->len)
+		--this->len;
 }
 
 template<typename T>
 void MyVector<T>::reserve(const size_t newCapacity)
 {
+	lock_guard<mutex> guard(this->lock);
+
 	ReAllocMemory(newCapacity);
 }
 
 template<typename T>
 void MyVector<T>::clear(void)
 {
-	SAFE_DELETE_ARRAY(this->data);
+	lock_guard<mutex> guard(this->lock);
+
 	this->len = 0;
 }
 
 template<typename T>
 size_t MyVector<T>::size(void)
 {
+	lock_guard<mutex> guard(this->lock);
+
 	return this->len;
 }
 
 template<typename T>
 T MyVector<T>::operator[](const size_t index)
 {
+	lock_guard<mutex> guard(this->lock);
+
 	if (IS_VALID_RANGE(index, this->len))
 		return this->data[index];
 
@@ -100,7 +121,6 @@ bool MyVector<T>::ReAllocMemory(const size_t newCapacity)
 {
 	if (this->capacity >= newCapacity)
 	{
-		ERROR_LOG("capacity " << this->capacity << " >= newCapacity " << newCapacity);
 		return FAIL;
 	}
 
